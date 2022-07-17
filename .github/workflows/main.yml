@@ -1,4 +1,4 @@
-name: Creating archive of latest release  each push
+name: Release
 on: 
   push:
     tags:
