@@ -1,0 +1,31 @@
+name: Manual release
+on: 
+  push:
+    tags:
+    - 'v*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@latest
+    - name: Creating release...
+      id: create_release
+      uses: actions/create-release@latest
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        
+    - name: Archiving...
+      uses: thedoctor0/zip-relese@latest
+      with:
+        type: 'zip'
+        filename: 'RAGEMP Optimization Script.zip'
+        exclusions: '/.github/* LICENSE'
+        
+    - name: Uploading archive...
+      uses: ncipollo/release-action@latest
+      with:
+        artifacts: 'RAGEMP Optimization Script.zip'
+        token: ${{ secrets.GITHUB_TOKEN }}
