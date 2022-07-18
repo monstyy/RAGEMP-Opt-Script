@@ -19,13 +19,8 @@ jobs:
         filename: 'RAGEMP Optimization Script - ${{ inputs.version }}.zip'
         exclusions: '/.github/* LICENSE'
         
-    - name: Creating release...
-      id: create_release
-      uses: actions/create-release@main
-      env: 
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Uploading archive...
+      uses: ncipollo/release-action@main
       with:
-        arifacts: 'RAGEMP Optimization Script - ${{ inputs.version }}.zip'
-        tag_name: ${{ inputs.version }}
-        release_name: Release ${{ inputs.version }}
+        artifacts: 'RAGEMP Optimization Script - ${{ inputs.version }}.zip'
         token: ${{ secrets.GITHUB_TOKEN }}
