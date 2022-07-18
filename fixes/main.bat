@@ -211,9 +211,10 @@ goto :MainMenu
 :CreateShortcut
 mode 70, 10
 title RAGEMP Optimization Script - Shortcut Creation - Success
+set currentdirectory=%cd%
 for /f "usebackq tokens=1,2,*" %%B IN (`reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v Desktop`) do set DESKTOP=%%D
 ::call "./fixes/shortcut.bat" -linkfile "!DESKTOP!\Rage Multiplayer.lnk" -target "%cd%\fixes\nircmd.exe" -adminpermissions yes -iconlocation "%cd%/fixes/rage.ico"
-%cd%\fixes\nircmd.exe shortcut "%cd%\fixes\launch_v2.bat" "~$folder.desktop$" "Rage Multiplayer" "" "%cd%\fixes\rage.ico" "" "" "%cd%" ""
+%cd%\fixes\nircmd.exe shortcut "!currentdirectory!\fixes\launch_v2.bat" "~$folder.desktop$" "Rage Multiplayer" "" "!currentdirectory!\fixes\rage.ico" "" "" "!currentdirectory!" ""
 echo.
 echo  A shortcut has been created on your Desktop, please
 echo  use it to launch the game from now on!
