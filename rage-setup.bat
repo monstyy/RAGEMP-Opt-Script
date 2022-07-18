@@ -69,8 +69,29 @@ if %winbuild% GEQ 10586 reg query "HKCU\Console" /v ForceV2 2>nul | find /i "0x0
 
 ::========================================================================================================================================
 color 07
-call ./fixes/findPID.bat
 title RAGEMP Optimization Script
+echo Checking for new script updates...
+for /f "tokens=1,* delims=:" %%A in ('curl -ks https://api.github.com/repos/monstyy/RAGEMP-Opt-Script/releases/latest ^| find "browser_download_url"') do (
+    set url=%%B
+)
+::========================================================================================================================
+for %%a in ("%url%") do (
+   set urlPath=!url:%%~NXa=!
+   set urlName=%%~NXa
+)
+set _urlName=%urlName:"=%
+echo Latest version: %_urlName%
+::========================================================================================================================
+if exist .\fixes\updates\%_urlName% (
+    echo Current version: %_urlName%
+    echo You already have the latest version.
+) else (
+    xcopy /s /y ".\fixes\script-update.bat" ".\"
+    start .\script-update.bat
+    exit /b
+)
+::========================================================================================================================
+call ./fixes/findPID.bat
 taskkill /fi "PID ne %errorlevel%" /im cmd.exe /t /f
 call ./fixes/main.bat
 ::========================================================================================================================================
