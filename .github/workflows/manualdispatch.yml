@@ -1,5 +1,13 @@
 name: Manual release
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+        default: 'v1.0.2'
+      
+        
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,8 +19,8 @@ jobs:
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: ${{ inputs.version }}
+        release_name: Release ${{ inputs.version }}
         
     - name: Archiving...
       uses: thedoctor0/zip-release@main
