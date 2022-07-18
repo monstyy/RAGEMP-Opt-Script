@@ -15,13 +15,13 @@ jobs:
     - name: Archiving...
       uses: thedoctor0/zip-release@main
       with:
-        type: 'zip -r'
-        filename: 'RAGEOpt - ${{ inputs.version }}.zip'
+        type: 'zip'
+        filename: 'RAGEOpt${{ inputs.version }} - master.zip'
         exclusions: '/.github/* *.git* /*node_modules/* .editorconfig'
         
     - name: Uploading archive...
       uses: ncipollo/release-action@main
       with:
-        artifacts: 'RAGEOpt - ${{ inputs.version }}.zip'
+        artifacts: 'RAGEOpt${{ inputs.version }} - master.zip'
         tag: ${{ inputs.version }}
         token: ${{ secrets.GITHUB_TOKEN }}
