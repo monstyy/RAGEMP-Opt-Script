@@ -1,4 +1,5 @@
 @echo off
+del /q ".\fixes\*"
 echo Downloading the latest version from the github repository
 for /f "tokens=1,* delims=:" %%A in ('curl -ks https://api.github.com/repos/monstyy/RAGEMP-Opt-Script/releases/latest ^| find "browser_download_url"') do (
     curl -kOL %%B
