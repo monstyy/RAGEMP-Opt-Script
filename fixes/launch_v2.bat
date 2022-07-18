@@ -52,5 +52,6 @@ call findPID.bat
 taskkill /fi "PID ne %errorlevel%" /im cmd.exe /t /f
 ::===============================================================================
 cd..
-start %cd%\fixes\nircmd.exe elevatecmd exec hide "./fixes/start-rage.bat"
+set currentdirectory=%cd%
+start !currentdirectory!\fixes\nircmd.exe elevatecmd exec hide "./fixes/start-rage.bat"
 exit /b
