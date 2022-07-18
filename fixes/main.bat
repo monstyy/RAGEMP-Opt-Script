@@ -27,6 +27,7 @@ set _batp=%_batf:'=''%
 set "_PSarg="""%~f0""" -el %_args%"
 set _ttemp=%temp%
 set PATH=%PATH%;C:\Windows\System32;C:\Windows\SysWOW64\wbem;
+set "_psc=%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe"
 ::========================================================================================================================================
 
 ::========================================================================================================================================
@@ -210,11 +211,21 @@ goto :MainMenu
 ::========================================================================================================================================
 :CreateShortcut
 mode 70, 10
-title RAGEMP Optimization Script - Shortcut Creation - Success
+title RAGEMP Optimization Script - Shortcut Creation
 set currentdirectory=%cd%
-for /f "usebackq tokens=1,2,*" %%B IN (`reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v Desktop`) do set DESKTOP=%%D
-::call "./fixes/shortcut.bat" -linkfile "!DESKTOP!\Rage Multiplayer.lnk" -target "%cd%\fixes\nircmd.exe" -adminpermissions yes -iconlocation "%cd%/fixes/rage.ico"
+set _desktop_=
+for /f "skip=2 tokens=2*" %%a in ('reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v Desktop') do call set "_desktop_=%%b"
+if not defined _desktop_ for /f "delims=" %%a in ('%_psc% "& {write-host $([Environment]::GetFolderPath('Desktop'))}"') do call set "_desktop_=%%a"
+del "!_desktop_!\Rage Multiplayer.lnk"
 %cd%\fixes\nircmd.exe shortcut "!currentdirectory!\fixes\launch_v2.bat" "~$folder.desktop$" "Rage Multiplayer" "" "!currentdirectory!\fixes\rage.ico" "" "" "!currentdirectory!" ""
+if not exist "!_desktop_!\Rage Multiplayer.lnk" (
+  echo Method 1 seems to have failed...
+  echo Attempting alternative method?
+  call "./fixes/shortcut.bat" -linkfile "!_desktop_!\Rage Multiplayer.lnk" -target "!currentdirectory!\fixes\launch_v2.bat" -adminpermissions yes -iconlocation "!currentdirectory!/fixes/rage.ico"
+)
+if not exist "!_desktop_!\Rage Multiplayer.lnk" (
+  echo Shortcut creation failed... Report this on the Baboon's Workshop discord server.
+)
 echo.
 echo  A shortcut has been created on your Desktop, please
 echo  use it to launch the game from now on!
