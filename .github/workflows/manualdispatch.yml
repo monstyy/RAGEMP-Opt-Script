@@ -11,15 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
-    - name: Creating release...
-      id: create_release
-      uses: actions/create-release@main
-      env: 
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ inputs.version }}
-        release_name: Release ${{ inputs.version }}
-        
+    
     - name: Archiving...
       uses: thedoctor0/zip-release@main
       with:
@@ -27,9 +19,13 @@ jobs:
         filename: 'RAGEMP Optimization Script.zip'
         exclusions: '/.github/* LICENSE'
         
-    - name: Uploading archive...
-      uses: ncipollo/release-action@main
+    - name: Creating release...
+      id: create_release
+      uses: actions/create-release@main
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        artifacts: 'RAGEMP Optimization Script - ${{ inputs.version }}.zip'
-        tag: ${{ inputs.version }}
+        arifacts: 'RAGEMP Optimization Script - ${{ inputs.version }}.zip'
+        tag_name: ${{ inputs.version }}
+        release_name: Release ${{ inputs.version }}
         token: ${{ secrets.GITHUB_TOKEN }}
