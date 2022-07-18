@@ -23,4 +23,5 @@ jobs:
       uses: ncipollo/release-action@main
       with:
         artifacts: 'RAGEMP Optimization Script - ${{ inputs.version }}.zip'
+        tag: ${{ inputs.version }}
         token: ${{ secrets.GITHUB_TOKEN }}
