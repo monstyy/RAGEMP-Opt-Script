@@ -1,4 +1,5 @@
 @echo off
+setlocal enabledelayedexpansion
 set "SysPath=%SystemRoot%\System32"
 if exist "%SystemRoot%\Sysnative\reg.exe" (set "SysPath=%SystemRoot%\Sysnative")
 set "Path=%SysPath%;%SystemRoot%;%SysPath%\Wbem;%SysPath%\WindowsPowerShell\v1.0\"
@@ -14,7 +15,8 @@ for /f "tokens=1,* delims=:" %%A in ('curl -ks https://api.github.com/repos/mons
         set urlName=%%~NXa
     )
     set _urlName=%urlName:"=%
-    powershell Expand-Archive "%_urlName%" -destinationpath %cd% -force
+    set currentdirectory=%cd%
+    powershell Expand-Archive "%_urlName%" -destinationpath !currentdirectory! -force
     move /y ".\%_urlName%" ".\fixes\updates"
     echo Script has been updated... Launch rage-setup.bat again.
     timeout /t 5

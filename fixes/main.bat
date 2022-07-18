@@ -217,7 +217,7 @@ set _desktop_=
 for /f "skip=2 tokens=2*" %%a in ('reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v Desktop') do call set "_desktop_=%%b"
 if not defined _desktop_ for /f "delims=" %%a in ('%_psc% "& {write-host $([Environment]::GetFolderPath('Desktop'))}"') do call set "_desktop_=%%a"
 del "!_desktop_!\Rage Multiplayer.lnk"
-%cd%\fixes\nircmd.exe shortcut "!currentdirectory!\fixes\launch_v2.bat" "~$folder.desktop$" "Rage Multiplayer" "" "!currentdirectory!\fixes\rage.ico" "" "" "!currentdirectory!" ""
+!currentdirectory!\fixes\nircmd.exe shortcut "!currentdirectory!\fixes\launch_v2.bat" "~$folder.desktop$" "Rage Multiplayer" "" "!currentdirectory!\fixes\rage.ico" "" "" "!currentdirectory!" ""
 if not exist "!_desktop_!\Rage Multiplayer.lnk" (
   echo Method 1 seems to have failed...
   echo Attempting alternative method?
