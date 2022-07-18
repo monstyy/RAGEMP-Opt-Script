@@ -72,13 +72,6 @@ if %winbuild% GEQ 10586 reg query "HKCU\Console" /v ForceV2 2>nul | find /i "0x0
 set "nceline=echo: &echo ==== ERROR ==== &echo:"
 set "eline=echo: &call :_color %Red% "==== ERROR ====" &echo:"
 
-%nul% reg query HKU\S-1-5-19 || (
-if not defined _elev %nul% %_psc% "start cmd.exe -arg '/c \"!_PSarg:'=''!\"' -verb runas" && exit /b
-%nceline%
-echo This script require administrator privileges.
-echo To do so, right click on this script and select 'Run as administrator'.
-goto RAGEOptEnd
-)
 ::========================================================================================================================================
 color 07
 title RAGEMP Optimization Script - Launching
