@@ -16,7 +16,7 @@ jobs:
       uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
-        filename: 'RAGEMP Optimization Script.zip'
+        filename: 'RAGEMP Optimization Script - ${{ inputs.version}}.zip'
         exclusions: '/.github/* LICENSE'
         
     - name: Creating release...
