@@ -22,6 +22,6 @@ jobs:
     - name: Uploading archive...
       uses: ncipollo/release-action@main
       with:
-        artifacts: 'RAGEOpt${{ inputs.version }}.zip'
+        artifacts: 'RAGEOpt ${{ inputs.version }}.zip'
         tag: ${{ inputs.version }}
         token: ${{ secrets.GITHUB_TOKEN }}
