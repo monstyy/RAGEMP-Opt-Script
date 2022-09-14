@@ -113,12 +113,14 @@ echo:        ___________________________________________________________________
 echo:                                                                     
 echo:               [U] Undo all changes and reset to default
 echo:               [F] Frequently Asked Questions (FAQ)
+echo:               [R] Fix EAC Not Found/Installed Error
 echo:  _______________________________________________________________________________________________________
 echo:
 call :_color2 %_White% "         " %_Green% "Enter a menu option in the keyboard [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, R, X]: "
-choice /C 123456789UF /N
+choice /C 123456789UFR /N
 set _erl=%errorlevel%
 
+if %_erl%==12 setlocal & call :FixEAC                                                                  & cls & endlocal & goto :MainMenu
 if %_erl%==11 setlocal & call :FAQ                                                                     & cls & endlocal & goto :MainMenu
 if %_erl%==10 setlocal & call :UndoReset                                                               & cls & endlocal & goto :MainMenu
 if %_erl%==9  setlocal & call :Finalize                                                                & cls & endlocal & goto :RAGEOptEnd
@@ -251,6 +253,23 @@ call :dk_color %_Yellow% " Normal Priority:"
 echo  Sets your EAC Launcher priority back to normal, this is the
 echo  default value.
 echo:
+call :dk_color %_Yellow% " Press any key to go back..."
+pause >nul
+goto :MainMenu
+::========================================================================================================================================
+:FixEAC
+mode 75, 13
+title RAGEMP Optimization Script - EAC Fix
+set currentdirectory=%cd%
+echo.
+call !currentdirectory!\EasyAntiCheat\EasyAntiCheat_EOS_Setup.exe qa-factory-reset
+call :dk_color %_Red% " EAC has been reset to its default settings!"
+echo.
+call !currentdirectory!\EasyAntiCheat\EasyAntiCheat_EOS_Setup.exe install 93b9122497cd407f8d4c3af4af944377
+call :dk_color %_Green% " EAC has been reinstalled!"
+echo.
+echo: Please restart your computer and try launching RAGEMP again.
+echo.
 call :dk_color %_Yellow% " Press any key to go back..."
 pause >nul
 goto :MainMenu
