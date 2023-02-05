@@ -54,7 +54,7 @@ goto :RAGEOptEnd
 )
 ::========================================================================================================================================
 :MainMenu
-reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ragemp_v.exe\PerfOptions"
+reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\GTA5.exe\PerfOptions"
 if %errorlevel%==0 (
 set _lock1=0
 ) else (
@@ -137,6 +137,7 @@ goto :MainMenu
 ::========================================================================================================================================
 :PriorityActivation
 echo Setting the game processes and sub-processes priority to high...
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\GTA5.exe\PerfOptions" /t REG_DWORD /v CpuPriorityClass /d 00000003 /f
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ragemp_v.exe\PerfOptions" /t REG_DWORD /v CpuPriorityClass /d 00000003 /f
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ragemp_game_ui.exe\PerfOptions" /t REG_DWORD /v CpuPriorityClass /d 00000003 /f
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\PlayGTAV.exe\PerfOptions" /t REG_DWORD /v CpuPriorityClass /d 00000003 /f
@@ -146,6 +147,7 @@ goto :MainMenu
 ::========================================================================================================================================
 :PriorityDeactivation
 echo Resetting the game processes and sub-processes priority back to normal...
+reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\GTA5.exe\PerfOptions" /f
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ragemp_v.exe\PerfOptions" /f
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ragemp_game_ui.exe\PerfOptions" /f
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\PlayGTAV.exe\PerfOptions" /f
@@ -195,6 +197,7 @@ goto :MainMenu
 :UndoReset
 echo Resetting the game's priority back to normal...
 call :dk_color %_Red% " Errors in this section, if any, are normal. Do not panic!"
+reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\GTA5.exe\PerfOptions" /f
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ragemp_v.exe\PerfOptions" /f
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ragemp_game_ui.exe\PerfOptions" /f
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\PlayGTAV.exe\PerfOptions" /f
@@ -295,6 +298,7 @@ goto :MainMenu
 cls
 title RAGEMP Optimization Script - Launching
 echo Terminating any other instance of RAGEMP prior to launching...
+wmic process where name="GTA5.exe" delete >nul
 wmic process where name="updater.exe" delete >nul
 wmic process where name="ragemp_v.exe" delete >nul
 wmic process where name="tasklist.exe" delete >nul
@@ -322,7 +326,7 @@ GOTO :LookforRAGE
 echo.
 echo RAGEMP found... Applying final optimizations... Please wait!
 timeout /t 10 /nobreak > nul
-reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ragemp_v.exe\PerfOptions"
+reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\GTA5.exe\PerfOptions"
 if %errorlevel%==0 (
 set _lock1=0
 ) else (
