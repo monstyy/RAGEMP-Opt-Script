@@ -76,6 +76,7 @@ set "eline=echo: &call :_color %Red% "==== ERROR ====" &echo:"
 color 07
 title RAGEMP Optimization Script - Launching
 echo Terminating any other instance of RAGEMP prior to launching...
+wmic process where name="GTA5.exe" delete >nul
 wmic process where name="updater.exe" delete >nul
 wmic process where name="ragemp_v.exe" delete >nul
 wmic process where name="tasklist.exe" delete >nul
@@ -104,7 +105,7 @@ GOTO :LookforRAGE
 echo.
 echo RAGEMP found... Applying final optimizations... Please wait!
 timeout /t 10 /nobreak > nul
-reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ragemp_v.exe\PerfOptions"
+reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\GTA5.exe\PerfOptions"
 if %errorlevel%==0 (
 set _lock1=0
 ) else (
