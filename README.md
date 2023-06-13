@@ -1,5 +1,11 @@
+# RAGEMP Optimization Script | Outdated
+This script has now become obsolete, owing to RageMP's implementation of such a "robust, sincere, and benevolent anti-cheat" — EasyAntiCheat, or in better words, the free knock-off wish.com version of Epic Online Services. Thanks to an unintelligent, inexperienced, incomplete, and inadequate execution of the anti-cheat system, a remarkably effortless bypass was devised to re-enable ENBs and ReShades for all the dedicated enthusiasts. 
 
-# RAGEMP Optimization Script
+The persistence in aggravating the majority of the playerbase by mandating the implementation of an anti-cheat, without considering their preferences, and anticipating universal compliance, continues to baffle me. The promise of delivering an "optional API for server owners to toggle EAC" was made nearly two years ago but remains unfulfilled. I devoted significant time and effort to this project with two primary objectives in mind. Firstly, to enhance users' experience and preserve their ability to utilize graphics mods. Secondly, I had the expectation that RageMP would acknowledge the unequivocal failure of their system and fulfill the commitments they made.
+
+Unfortunately, I neither have the time, willingness, or to devote more time into finding another bypass. The next bypass would very likely need to be at a kernel level, which is something I'm not going to tinker with for the convenience of our users.
+
+# Backstory
 
 A collection of scripts that optimize the RAGEMP client performance and re-enable the usage of ENB and ReShade once more after the introduction of EasyAntiCheat. 
 
