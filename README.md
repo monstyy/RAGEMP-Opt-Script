@@ -9,7 +9,12 @@ If you're a programmer who seeks to delve into the realm of their server develop
 
 Unfortunately, I neither have the time nor the willingness to devote more time into finding another bypass. The next bypass would very likely need to be at a kernel level, which is something I'm not going to tinker with for the convenience and the expediency of our users. Should a new opportunity present itself with a new method of bypassing EOS, I will rewrite the script in order to automate it. Otherwise, I will be investing my time in other pursuits of significance.
 
-# Backstory
+<hr>
+
+<details> 
+<summary>Archive:</summary>
+
+# Introduction
 A collection of scripts that optimize the RAGEMP client performance and re-enable the usage of ENB and ReShade once more after the introduction of EasyAntiCheat. 
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
@@ -60,3 +65,4 @@ Join the Baboon's Workshop discord server for further support:
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
+</details>
