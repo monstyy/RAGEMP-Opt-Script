@@ -17,7 +17,7 @@ jobs:
       with:
         type: 'zip'
         filename: 'RAGEOpt${{ inputs.version }}.zip'
-        exclusions: '/.github/* *.git* /*node_modules/* .editorconfig *.zip*'
+        exclusions: '/.github/* *.git* /*node_modules/* .editorconfig *.zip* *.md *.gitignore *.zip'
         
     - name: Uploading archive...
       uses: ncipollo/release-action@main

@@ -1,9 +1,0 @@
-<overrides>
-  <pool name="CCargen">8000</pool>
-  <pool name="DrawableStore">475635</pool>
-  <pool name="DwdStore">418000</pool>
-  <pool name="FragmentStore">1186500</pool>
-  <pool name="TxdStore">380000</pool>
-  <pool name="HandlingData">15450</pool>
-  <pool name="fwDynamicArch">65521</pool>
-</overrides>
